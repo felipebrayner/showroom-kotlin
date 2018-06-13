@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.felipe.beerlist.BeerDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:orientation="horizontal"
+        android:layout_weight="20">
+
+        <ImageView
+            android:layout_weight="25"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:src="@drawable/star"/>
+
+        <View
+            android:layout_weight="5"
+            android:layout_width="0px"
+            android:layout_height="0px"/>
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="70"
+            android:orientation="vertical">
+
+            <View
+                android:layout_weight="3"
+                android:layout_width="0px"
+                android:layout_height="0px"/>
+
+            <TextView
+                android:id="@+id/textview_beer_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"/>
+
+            <View
+                android:layout_weight="1"
+                android:layout_width="0px"
+                android:layout_height="0px"/>
+
+            <TextView
+                android:id="@+id/textview_beer_tagline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_weight="3"
+                android:layout_width="0px"
+                android:layout_height="0px"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_weight="3"
+        android:layout_width="0px"
+        android:layout_height="0px"/>
+
+    <TextView
+        android:id="@+id/textview_beer_description"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="77"/>
+</LinearLayout>
