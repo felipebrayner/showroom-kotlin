@@ -3,21 +3,14 @@ package com.example.felipe.beerlist
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.util.AttributeSet
 import android.view.Menu
 import android.widget.AdapterView
 import android.widget.SearchView
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.listview
-import android.view.InflateException
-import android.widget.TextView
-import android.view.LayoutInflater
-import android.view.View
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         apiService.getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ b -> showBeers(b)})
+                .subscribe{ b -> showBeers(b)}
     }
 
     private fun showBeers(beers: List<Beer>) {
