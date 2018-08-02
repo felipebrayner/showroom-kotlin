@@ -1,7 +1,5 @@
 package com.example.felipe.beerlist
 
-import android.app.SearchManager
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -42,10 +40,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.options_menu, menu)
 
-        val searchView: SearchView = menu!!.findItem(R.id.search).actionView as SearchView
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        val searchView = menu!!.findItem(R.id.search).actionView as SearchView
+        /*val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))*/
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(text: String): Boolean {

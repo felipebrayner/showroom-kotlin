@@ -22,8 +22,8 @@ class BeerListAdapter(private var activity: Activity, private var items: List<Be
         var txtTagline: TextView? = null
 
         init {
-            this.txtName = row?.findViewById<TextView>(R.id.beer_name)
-            this.txtTagline = row?.findViewById<TextView>(R.id.beer_tagline)
+            this.txtName = row?.findViewById(R.id.beer_name)
+            this.txtTagline = row?.findViewById(R.id.beer_tagline)
         }
     }
 
