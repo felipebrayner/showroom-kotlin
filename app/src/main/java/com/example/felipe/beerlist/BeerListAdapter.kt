@@ -54,7 +54,7 @@ class BeerListAdapter(private var activity: Activity, private var items: List<Be
                 val list = ArrayList<Beer>()
 
                 for (b in items) {
-                    if (b.name.toLowerCase().contains(constraint.toString().toLowerCase())) {
+                    if (b.name!!.toLowerCase().contains(constraint.toString().toLowerCase())) {
                         list.add(b)
                     }
                 }
@@ -64,8 +64,7 @@ class BeerListAdapter(private var activity: Activity, private var items: List<Be
                 return result
             }
 
-            override fun publishResults(constraint: CharSequence,
-                                        results: Filter.FilterResults) {
+            override fun publishResults(constraint: CharSequence, results: Filter.FilterResults) {
                 items = results.values as ArrayList<Beer>
                 notifyDataSetChanged()
             }

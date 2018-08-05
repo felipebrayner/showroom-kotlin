@@ -1,80 +1,85 @@
 package com.example.felipe.beerlist
 
+import io.realm.RealmObject
+import io.realm.annotations.Ignore
+import io.realm.annotations.PrimaryKey
+import io.realm.annotations.RealmClass
 import java.io.Serializable
 
-data class Beer(
-        val id: Int,
-        val name: String,
-        val tagline: String,
-        val first_brewed: String,
-        val description: String,
-        val image_url: String,
-        val abv: Float,
-        val ibu: Float,
-        val target_fg: Float,
-        val target_og: Float,
-        val ebc: Float,
-        val srm: Float,
-        val ph: Float,
-        val attenuation_level: Float,
-        val volume: Volume,
-        val boil_volume: BoilVolume,
-        val method: Method,
-        val ingredients: Ingredients,
-        val food_pairing: List<String>,
-        val brewers_tips: String,
-        val contributed_by: String
-): Serializable
+@RealmClass
+open class Beer: RealmObject(), Serializable {
+    @PrimaryKey var id: Int? = null
+    @Ignore val name: String? = null
+    @Ignore val tagline: String? = null
+    @Ignore val first_brewed: String? = null
+    @Ignore val description: String? = null
+    @Ignore val image_url: String? = null
+    @Ignore val abv: Float? = null
+    @Ignore val ibu: Float? = null
+    @Ignore val target_fg: Float? = null
+    @Ignore val target_og: Float? = null
+    @Ignore val ebc: Float? = null
+    @Ignore val srm: Float? = null
+    @Ignore val ph: Float? = null
+    @Ignore val attenuation_level: Float? = null
+    @Ignore val volume: Volume? = null
+    @Ignore val boil_volume: BoilVolume? = null
+    @Ignore val method: Method? = null
+    @Ignore val ingredients: Ingredients? = null
+    @Ignore val food_pairing: List<String>? = null
+    @Ignore val brewers_tips: String? = null
+    @Ignore val contributed_by: String? = null
+}
 
-data class Ingredients(
+class Ingredients(
         val malt: List<Malt>,
         val hops: List<Hop>,
         val yeast: String
 ): Serializable
 
-data class Hop(
+class Hop(
         val name: String,
         val amount: Amount,
         val add: String,
         val attribute: String
 ): Serializable
 
-data class Amount(
+class Amount(
         val value: Float,
         val unit: String
 ): Serializable
 
-data class Malt(
+class Malt(
         val name: String,
         val amount: Amount
 ): Serializable
 
-data class Volume(
+class Volume(
         val value: Int,
         val unit: String
 ): Serializable
 
-data class BoilVolume(
+class BoilVolume(
         val value: Int,
         val unit: String
 ): Serializable
 
-data class Method(
+class Method(
         val mash_temp: List<MashTemp>,
         val fermentation: Fermentation,
         val twist: Any
 ): Serializable
 
-data class Fermentation(
+class Fermentation(
         val temp: Temp
 ): Serializable
 
-data class MashTemp(
+class MashTemp(
         val temp: Temp,
         val duration: Int
 ): Serializable
 
-data class Temp(
+class Temp(
         val value: Int,
         val unit: String
 ): Serializable
