@@ -9,10 +9,10 @@ import java.io.Serializable
 @RealmClass
 open class Beer: RealmObject(), Serializable {
     @PrimaryKey var id: Int? = null
-    @Ignore val name: String? = null
-    @Ignore val tagline: String? = null
+    var name: String? = null
+    var tagline: String? = null
+    var description: String? = null
     @Ignore val first_brewed: String? = null
-    @Ignore val description: String? = null
     @Ignore val image_url: String? = null
     @Ignore val abv: Float? = null
     @Ignore val ibu: Float? = null

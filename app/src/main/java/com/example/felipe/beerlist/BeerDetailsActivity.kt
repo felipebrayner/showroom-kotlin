@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import com.vicpin.krealmextensions.save
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_beer_details.textview_beer_description
@@ -27,9 +28,7 @@ class BeerDetailsActivity : AppCompatActivity() {
             var b = realm.where<Beer>().equalTo("id", beer.id).findFirst()
             if(b == null) {
                 Toast.makeText(this, "Salvando Beer: " + beer.name, Toast.LENGTH_SHORT).show()
-                realm.beginTransaction()
-                realm.insert(beer)
-                realm.commitTransaction()
+                beer.save()
             } else {
                 Toast.makeText(this, "Removendo Beer: " + beer.name, Toast.LENGTH_SHORT).show()
                 realm.beginTransaction()

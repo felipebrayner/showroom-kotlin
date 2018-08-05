@@ -8,4 +8,8 @@
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView" />
     <!--android:icon="@android:drawable/ic_menu_search"-->
+    <item
+        android:id="@+id/fav"
+        android:title="Favorites"
+        app:showAsAction="never" />
 </menu>
