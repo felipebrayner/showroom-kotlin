@@ -1,4 +1,4 @@
-package com.example.felipe.beerlist
+package com.example.felipe.beerlist.activity
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -7,6 +7,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.SearchView
+import com.example.felipe.beerlist.model.Beer
+import com.example.felipe.beerlist.adapter.BeerListAdapter
+import com.example.felipe.beerlist.service.PunkApiService
+import com.example.felipe.beerlist.R
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.realm.Realm
@@ -40,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         if(isFavorite) {
             val realm = Realm.getDefaultInstance()
             var beers = arrayListOf<Beer>()
-            realm.where<Beer>().findAll().forEach {b ->
+            realm.where<Beer>().findAll().forEach { b ->
                 beers.add(realm.copyFromRealm<Beer>(b))
             }
             showBeers(beers)

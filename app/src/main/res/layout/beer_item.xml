@@ -38,8 +38,7 @@
                 android:id="@+id/beer_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Beer Title"/>
+                android:textStyle="bold"/>
 
             <View
                 android:layout_weight="1"
@@ -49,8 +48,7 @@
             <TextView
                 android:id="@+id/beer_tagline"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Beer Description"/>
+                android:layout_height="wrap_content"/>
 
             <View
                 android:layout_weight="4"

@@ -1,4 +1,4 @@
-package com.example.felipe.beerlist
+package com.example.felipe.beerlist.adapter
 
 import android.app.Activity
 import android.content.Context
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Filter
 import android.widget.TextView
+import com.example.felipe.beerlist.model.Beer
+import com.example.felipe.beerlist.R
 
 class BeerListAdapter(private var activity: Activity, private var items: List<Beer>) : BaseAdapter() {
 

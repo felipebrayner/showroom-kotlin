@@ -1,9 +1,8 @@
-package com.example.felipe.beerlist
+package com.example.felipe.beerlist.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
-
 
 
 class SplashActivity : AppCompatActivity() {

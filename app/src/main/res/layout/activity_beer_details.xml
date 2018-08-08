@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.felipe.beerlist.BeerDetailsActivity">
+    tools:context="com.example.felipe.beerlist.activity.BeerDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

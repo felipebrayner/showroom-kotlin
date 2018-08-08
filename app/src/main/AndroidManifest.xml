@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.felipe.beerlist.SplashActivity"
+            android:name="com.example.felipe.beerlist.activity.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +21,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.felipe.beerlist.MainActivity"/>
+            android:name="com.example.felipe.beerlist.activity.MainActivity"/>
         <activity
-            android:name="com.example.felipe.beerlist.BeerDetailsActivity"
+            android:name="com.example.felipe.beerlist.activity.BeerDetailsActivity"
             android:label="@string/beer_details_title"/>
 
     </application>

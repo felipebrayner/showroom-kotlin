@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Beer List</string>
     <string name="beer_details_title">Beer Details</string>
+    <string name="favorites">Favorites</string>
 </resources>

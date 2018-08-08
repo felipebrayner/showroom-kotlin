@@ -1,4 +1,4 @@
-package com.example.felipe.beerlist
+package com.example.felipe.beerlist.model
 
 import io.realm.RealmObject
 import io.realm.annotations.Ignore
@@ -31,55 +31,55 @@ open class Beer: RealmObject(), Serializable {
     @Ignore val contributed_by: String? = null
 }
 
-class Ingredients(
+data class Ingredients(
         val malt: List<Malt>,
         val hops: List<Hop>,
         val yeast: String
 ): Serializable
 
-class Hop(
+data class Hop(
         val name: String,
         val amount: Amount,
         val add: String,
         val attribute: String
 ): Serializable
 
-class Amount(
+data class Amount(
         val value: Float,
         val unit: String
 ): Serializable
 
-class Malt(
+data class Malt(
         val name: String,
         val amount: Amount
 ): Serializable
 
-class Volume(
+data class Volume(
         val value: Int,
         val unit: String
 ): Serializable
 
-class BoilVolume(
+data class BoilVolume(
         val value: Int,
         val unit: String
 ): Serializable
 
-class Method(
+data class Method(
         val mash_temp: List<MashTemp>,
         val fermentation: Fermentation,
         val twist: Any
 ): Serializable
 
-class Fermentation(
+data class Fermentation(
         val temp: Temp
 ): Serializable
 
-class MashTemp(
+data class MashTemp(
         val temp: Temp,
         val duration: Int
 ): Serializable
 
-class Temp(
+data class Temp(
         val value: Int,
         val unit: String
 ): Serializable

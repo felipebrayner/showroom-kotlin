@@ -1,5 +1,6 @@
-package com.example.felipe.beerlist
+package com.example.felipe.beerlist.service
 
+import com.example.felipe.beerlist.model.Beer
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.Retrofit
@@ -13,6 +14,7 @@ import retrofit2.http.Path
  */
 interface PunkApiService {
 
+
     @GET("beers")
     fun getAll(): Observable<List<Beer>>
 
@@ -23,11 +25,12 @@ interface PunkApiService {
      * Companion object to create the PunkApiService
      */
     companion object Factory {
+        val URL = "https://api.punkapi.com/v2/"
         fun create(): PunkApiService {
             val retrofit = Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("https://api.punkapi.com/v2/")
+                    .baseUrl(URL)
                     .build()
 
             return retrofit.create(PunkApiService::class.java)
