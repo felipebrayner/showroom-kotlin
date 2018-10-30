@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
     android:orientation="horizontal">
 
     <ImageView
@@ -54,7 +55,6 @@
                 android:layout_weight="4"
                 android:layout_width="0px"
                 android:layout_height="0px"/>
-
         </LinearLayout>
 
         <FrameLayout
@@ -68,11 +68,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/right"/>
-
         </FrameLayout>
-
     </LinearLayout>
-
-
-
 </LinearLayout>

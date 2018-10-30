@@ -5,21 +5,17 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.AdapterView
 import android.widget.SearchView
 import com.example.felipe.beerlist.model.Beer
 import com.example.felipe.beerlist.adapter.BeerListAdapter
-import com.example.felipe.beerlist.service.PunkApiService
 import com.example.felipe.beerlist.R
-import io.reactivex.schedulers.Schedulers
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.realm.Realm
 import io.realm.kotlin.where
-import kotlinx.android.synthetic.main.activity_main.listview
+import kotlinx.android.synthetic.main.activity_main.recyclerview
 
-class MainActivity : AppCompatActivity() {
+private const val IS_FAVORITE = "favorite"
 
-    private val apiService = PunkApiService.create()
+class MainActivity : AppCompatActivity(), BeerListAdapter.OnItemClickListener {
     private lateinit var adapter: BeerListAdapter
     private var isFavorite = false
 
@@ -27,14 +23,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if(intent.extras == null) {
-            isFavorite = false
-            apiService.getAll()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe{ b -> showBeers(b)}
-        } else {
+        if(intent.extras.getBoolean(IS_FAVORITE, false)) {
             isFavorite = true
+        } else {
+            showBeers(intent.extras.get("beers") as List<Beer>)
         }
     }
 
@@ -52,15 +44,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showBeers(beers: List<Beer>) {
-        adapter = BeerListAdapter(this, beers)
-        listview.adapter = adapter
-        adapter.notifyDataSetChanged()
-
-        listview.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
-            val it = Intent(this, BeerDetailsActivity::class.java)
-            it.putExtra("beer", beers[position])
-            startActivity(it)
-        }
+        adapter = BeerListAdapter (beers, this)
+        recyclerview.adapter = adapter
+        recyclerview.setHasFixedSize(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -82,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         if(isFavorite) {
-            menu!!.findItem(R.id.fav).setVisible(false)
+            menu!!.findItem(R.id.fav).isVisible = false
         }
 
         return super.onCreateOptionsMenu(menu)
@@ -91,11 +77,17 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return if (item?.itemId == R.id.fav) {
             val it = Intent(this, MainActivity::class.java)
-            it.putExtra("favorite", true)
+            it.putExtra(IS_FAVORITE, true)
             startActivity(it)
             true
         } else {
             super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onItemClick(beer: Beer) {
+        val it = Intent(this, BeerDetailsActivity::class.java)
+        it.putExtra("beer", beer)
+        startActivity(it)
     }
 }

@@ -1,17 +1,16 @@
 package com.example.felipe.beerlist.adapter
 
-import android.app.Activity
-import android.content.Context
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.Filter
-import android.widget.TextView
 import com.example.felipe.beerlist.model.Beer
 import com.example.felipe.beerlist.R
+import kotlinx.android.synthetic.main.beer_item.view.*
 
-class BeerListAdapter(private var activity: Activity, private var items: List<Beer>) : BaseAdapter() {
+class BeerListAdapter(private var items: List<Beer>,
+                      private val listener: OnItemClickListener) : RecyclerView.Adapter<BeerListAdapter.ViewHolder>() {
 
     private var allBeers: List<Beer> = emptyList()
 
@@ -19,34 +18,18 @@ class BeerListAdapter(private var activity: Activity, private var items: List<Be
         allBeers = items
     }
 
-    private class ViewHolder(row: View?) {
-        var txtName: TextView? = null
-        var txtTagline: TextView? = null
-
-        init {
-            this.txtName = row?.findViewById(R.id.beer_name)
-            this.txtTagline = row?.findViewById(R.id.beer_tagline)
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.beer_item, parent, false)
+        return ViewHolder(view)
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view: View?
-        val viewHolder: ViewHolder
-        if (convertView == null) {
-            val inflater = activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            view = inflater.inflate(R.layout.beer_item, null)
-            viewHolder = ViewHolder(view)
-            view?.tag = viewHolder
-        } else {
-            view = convertView
-            viewHolder = view.tag as ViewHolder
-        }
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        val beer = items[position]
+        viewHolder.bindView(beer, listener)
+    }
 
-        var beer = items[position]
-        viewHolder.txtName?.text = beer.name
-        viewHolder.txtTagline?.text = beer.tagline
-
-        return view as View
+    override fun getItemCount(): Int {
+        return items.size
     }
 
     fun getFilter(): Filter {
@@ -73,15 +56,16 @@ class BeerListAdapter(private var activity: Activity, private var items: List<Be
         }
     }
 
-    override fun getItem(i: Int): Beer {
-        return items[i]
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        fun bindView(beer: Beer, listener: OnItemClickListener) {
+            itemView.beer_name.text = beer.name
+            itemView.beer_tagline.text = beer.tagline
+
+            itemView.setOnClickListener { listener.onItemClick(beer) }
+        }
     }
 
-    override fun getItemId(i: Int): Long {
-        return i.toLong()
-    }
-
-    override fun getCount(): Int {
-        return items.size
+    interface OnItemClickListener {
+        fun onItemClick(beer: Beer)
     }
 }

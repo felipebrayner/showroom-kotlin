@@ -8,12 +8,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Path
 
-
-/**
- * Created by Felipe on 05/02/2018.
- */
 interface PunkApiService {
-
 
     @GET("beers")
     fun getAll(): Observable<List<Beer>>
@@ -36,5 +31,4 @@ interface PunkApiService {
             return retrofit.create(PunkApiService::class.java)
         }
     }
-
 }
