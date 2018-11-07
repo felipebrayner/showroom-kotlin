@@ -7,11 +7,12 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PunkApiService {
 
     @GET("beers")
-    fun getAll(): Observable<List<Beer>>
+    fun getPerPage(@Query("page") page: Int = 1, @Query("per_page") perPage: Int = 50): Observable<List<Beer>>
 
     @GET("beers/{beerID}")
     fun get(@Path("beerID") beerID: String): Observable<List<Beer>>

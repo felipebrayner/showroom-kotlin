@@ -8,11 +8,12 @@ import android.widget.Filter
 import com.example.felipe.beerlist.model.Beer
 import com.example.felipe.beerlist.R
 import kotlinx.android.synthetic.main.beer_item.view.*
+import kotlin.collections.ArrayList
 
-class BeerListAdapter(private var items: List<Beer>,
+class BeerListAdapter(private var items: ArrayList<Beer>,
                       private val listener: OnItemClickListener) : RecyclerView.Adapter<BeerListAdapter.ViewHolder>() {
 
-    private var allBeers: List<Beer> = emptyList()
+    private var allBeers = arrayListOf<Beer>()
 
     init {
         allBeers = items
@@ -54,6 +55,11 @@ class BeerListAdapter(private var items: List<Beer>,
                 notifyDataSetChanged()
             }
         }
+    }
+
+    fun addMoreBeers(moreBeers: ArrayList<Beer>) {
+        items.addAll(moreBeers)
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

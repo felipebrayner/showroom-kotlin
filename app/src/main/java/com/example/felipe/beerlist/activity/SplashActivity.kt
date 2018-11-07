@@ -14,15 +14,15 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        apiService.getAll()
+        apiService.getPerPage()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe{ b -> openMainActivity(b)}
+                .subscribe{ b -> openMainActivity(b as ArrayList<Beer>) }
     }
 
-    private fun openMainActivity(beers: List<Beer>) {
+    private fun openMainActivity(beers: ArrayList<Beer>) {
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("beers", ArrayList(beers))
+        intent.putExtra("beers", beers)
         startActivity(intent)
         finish()
     }
